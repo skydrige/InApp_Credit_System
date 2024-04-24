@@ -1,0 +1,20 @@
+/* Login-Register.css */
+
+.MDBContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.MDBRow {
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.MDBBtn {
+    width: 100%;
+}
