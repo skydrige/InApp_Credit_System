@@ -6,25 +6,27 @@ const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(() => {
+        // Perform initial authentication check synchronously
+        const authCookie = Cookies.get('auth');
+        return authCookie !== undefined; // Set initial state based on cookie presence
+    });
     
     useEffect(() => {
-        // Initial check for authentication
-        const checkAuth = () => {
+        const interval = setInterval(() => {
             const authCookie = Cookies.get('auth');
-            setIsAuthenticated(authCookie === 'true');
-        };
-        
-        checkAuth(); // Check on mount
-        
-        const interval = setInterval(checkAuth, 5000); // Check every 5 seconds
-        
+            setIsAuthenticated(authCookie !== undefined);
+        }, 5000); // Check every 5 seconds
         return () => clearInterval(interval); // Cleanup interval on component unmount
     }, []);
     
     const login = () => {
+        const randomBytes = new Uint8Array(32);
+        window.crypto.getRandomValues(randomBytes);
+        const randomString = Array.from(randomBytes, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
+        
         setIsAuthenticated(true);
-        Cookies.set('auth', 'true', { expires: 7 }); // Set cookie to expire in 10 seconds
+        Cookies.set('auth', randomString, { expires: 7 });
     };
     
     const logout = () => {

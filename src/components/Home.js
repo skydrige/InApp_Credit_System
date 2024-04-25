@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Navbar, Form, FormControl } from 'react-bootstrap';
+import {Navbar, Form, FormControl, Container} from 'react-bootstrap';
 import "../assets/Home.css";
 import "../assets/Navbar.css";
 
 function Home() {
     const [credits, setCredits] = useState('');
-    const [eth, setEth] = useState('');
+    const [eth, setEth] = useState('0 ETH');
     
     const handleCreditsChange = (event) => {
         const val = event.target.value;
@@ -15,7 +15,7 @@ function Home() {
         } else {
             setCredits('');
             if (val === '') {
-                setEth('');
+                setEth('0 ETH');
             }
             else{
                 setEth('Invalid Credits');
@@ -24,7 +24,7 @@ function Home() {
     };
     
     return (
-        <div>
+        <Container>
             <Navbar className={"navbar"}>
                 <Navbar.Brand className={"navbar-brand"}>
                     <h1><span>InApp Credit System</span></h1>
@@ -45,7 +45,7 @@ function Home() {
                 </Form>
                 <div className="eth-output">{eth}</div>
             </div>
-        </div>
+        </Container>
     );
 }
 
