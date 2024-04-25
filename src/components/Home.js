@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import {Navbar, Form, FormControl, Container} from 'react-bootstrap';
+import {Navbar, Form, FormControl, Container, Button} from 'react-bootstrap';
+import { useAuth } from './AuthContext';
 import "../assets/Home.css";
 import "../assets/Navbar.css";
 
 function Home() {
     const [credits, setCredits] = useState('');
     const [eth, setEth] = useState('0 ETH');
+    
+    const { logout } = useAuth();
     
     const handleCreditsChange = (event) => {
         const val = event.target.value;
@@ -44,6 +47,9 @@ function Home() {
                     </Form.Group>
                 </Form>
                 <div className="eth-output">{eth}</div>
+                <div className={"div-logout"}>
+                    <Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>
+                </div>
             </div>
         </Container>
     );

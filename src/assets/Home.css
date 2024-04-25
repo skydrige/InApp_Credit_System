@@ -37,6 +37,24 @@
     background: #333;
     text-decoration-color: #e5e5e5;
     color: #e5e5e5;
+}
 
+.div-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.logout {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /*margin: 50px 70px;*/
+    padding: 15px 70px;
+    border-radius: 5px;
+    background: #333;
+    text-decoration-color: #e5e5e5;
+    color: #e5e5e5;
 }
 
