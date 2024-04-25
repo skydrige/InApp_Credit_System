@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     
     const login = () => {
         setIsAuthenticated(true);
-        Cookies.set('auth', 'true', { expires: 1 / 8640 }); // Set cookie to expire in 10 seconds
+        Cookies.set('auth', 'true', { expires: 7 }); // Set cookie to expire in 10 seconds
     };
     
     const logout = () => {
