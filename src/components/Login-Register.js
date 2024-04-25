@@ -1,73 +1,61 @@
 import React from 'react';
-import {
-    MDBContainer,
-    MDBCol,
-    MDBRow,
-    MDBBtn,
-    MDBIcon,
-    MDBInput,
-    MDBCheckbox
+import { Container, Form, Button } from 'react-bootstrap';
+import '../assets/Login-Register.css';
+
+function Login() {
+    return (
+        <Form className="auth-form" style={{ marginRight: "5%" }}>
+            <h3 className="text-center mb-4">Login</h3>
+            <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Username" />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="w-100 mt-4">
+                Log In
+            </Button>
+        </Form>
+    );
 }
-    from 'mdb-react-ui-kit';
-import './Login-Register.css';
+
+function Register() {
+    return (
+        <Form className="auth-form">
+            <h3 className="text-center mb-4">Register Here</h3>
+            <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Username" />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control type="password" placeholder="Confirm Password" />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="w-100 mt-4">
+                Register
+            </Button>
+        </Form>
+    );
+}
 
 function LoginRegister() {
     return (
-        <MDBContainer>
-            {/*This is a project that has InAppCreditSystem smart contract having functions Login, Register and UpdateCredits.*/}
-            {/*1. Register: This function is used to register a new user with the system. It takes the user's name, password as input and stores the user as key and password as value in the mapping and also stores the user's credits as 0 in format of {user: [password, credits]} in blockchain.*/}
-            {/*2. Login: This function is used to login a user with the system. It takes the user's name, password as input and checks if the user is registered or not. If the user is registered, it returns the user's credits which is in Dashboard.*/}
-            {/*3. UpdateCredits: This function is used to update the user's credits when user press BuyCredits in Frontend it takes the value of credits and validate the credits in form of ETH like [1 credit = 0.05 ETH] and triggers the metamask to pay the amount and update the user's credits in blockchain.*/}
-
-            <MDBRow>
-                <MDBCol md='6'>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <h1>Register</h1>
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <MDBInput label='Name' id='name' type='text' />
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <MDBInput label='Password' id='password' type='password' />
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <MDBBtn color='primary'>Register</MDBBtn>
-                        </MDBCol>
-                    </MDBRow>
-                </MDBCol>
-                <MDBCol md='6'>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <h1>Login</h1>
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <MDBInput label='Name' id='name' type='text' />
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <MDBInput label='Password' id='password' type='password' />
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12'>
-                            <MDBBtn color='primary'>Login</MDBBtn>
-                        </MDBCol>
-                    </MDBRow>
-                </MDBCol>
-            </MDBRow>
-
-        </MDBContainer>
+        <Container>
+            <div className="background d-flex align-items-center justify-content-center" style={{ height: '100vh' }}>
+                <div style={{ display: "flex", justifyContent: 'space-around' }}>
+                    <Login />
+                    <Register />
+                </div>
+            </div>
+        </Container>
     );
 }
 
 export default LoginRegister;
+
