@@ -31,6 +31,7 @@ function Home() {
             <Navbar className={"navbar"}>
                 <Navbar.Brand className={"navbar-brand"}>
                     <h1><span>InApp Credit System</span></h1>
+                    {/*<Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>*/}
                 </Navbar.Brand>
             </Navbar>
             <div className="credit-form">
@@ -44,6 +45,7 @@ function Home() {
                             placeholder="Number of Credits"
                             className="credits-input"
                         />
+                        <Button variant="primary" type={"submit"} className={"submit-button"}>Submit</Button>
                     </Form.Group>
                 </Form>
                 <div className="eth-output">{eth}</div>
