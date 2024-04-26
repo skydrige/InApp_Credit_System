@@ -21,7 +21,7 @@ function Login({ onSwitch }) {
     };
     
     return (
-        <Form className="auth-form" style={{ marginRight: "5%" }} onSubmit={onSubmit}>
+        <Form className="auth-form" onSubmit={onSubmit}>
             <h3 className="text-center mb-4">Login</h3>
             <Form.Group>
                 <Form.Label>Username</Form.Label>
