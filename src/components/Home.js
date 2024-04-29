@@ -14,7 +14,7 @@ function Home() {
         const val = event.target.value;
         if (/^\d+$/.test(val)) {  // Only non-negative integers are valid
             setCredits(val);
-            setEth((val * 0.05).toFixed(3) + ' ETH');
+            setEth((val * 0.0005).toFixed(3) + ' ETH');
         } else {
             setCredits('');
             if (val === '') {
