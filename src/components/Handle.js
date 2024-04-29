@@ -6,15 +6,3 @@ export function HandleLogin(username, password) {
         return true;
     }
 }
-
-export function HandleRegister(username, address, password) {
-
-}
-
-export function HandleCredits(username, amount) {
-
-}
-
-export function HandleBalance(username, amount) {
-
-}

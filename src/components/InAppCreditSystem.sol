@@ -26,20 +26,18 @@ contract InAppCreditSystem {
         emit UserRegistered(username);
     }
 
-    function login(string memory username, string memory password) public returns (bool) {
+    function login(string memory username, string memory password) public view returns (bool) {
         bytes32 hashedPassword = keccak256(abi.encodePacked(password));
         bool isValid = users[username].hashedPassword == hashedPassword;
 
-        emit UserLoggedIn(username, isValid);
         return isValid;
     }
 
     function updateCredits(string memory username, uint creditsToAdd) public payable {
-        require(msg.value == creditsToAdd * 0.05 ether, "Incorrect ETH sent");
+        require(msg.value == creditsToAdd * 0.0005 ether, "Incorrect ETH sent");
         require(users[username].hashedPassword != 0, "User does not exist");
 
         users[username].credits += creditsToAdd;
-        emit CreditsUpdated(username, users[username].credits);
     }
 
     function getBalance(string memory username) public view returns (uint) {

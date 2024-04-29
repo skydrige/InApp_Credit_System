@@ -13,10 +13,10 @@ function Login({ onSwitch }) {
     const onSubmit = (e) => {
         e.preventDefault();
         if (HandleLogin(username, password)) {
-            login(); // Update auth state
+            login();
             navigate('/home');
         } else {
-            onSwitch(); // Switch to register if login fails
+            onSwitch();
         }
     };
     
