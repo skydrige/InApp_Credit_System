@@ -39,7 +39,7 @@ function Login({ onSwitch }) {
                 <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} disabled={!walletAddress} />
             </Form.Group>
             <Button type="button" className="w-100 mt-4" onClick={() => connectWallet(setWalletAddress)}>
-                {walletAddress ? 'Connected' : 'Connect Wallet'}
+                {walletAddress ? 'Wallet Connected' : 'Connect Wallet'}
             </Button>
             <Button type="submit" className="w-100 mt-4" disabled={!walletAddress}>
                 Log In

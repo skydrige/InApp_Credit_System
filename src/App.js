@@ -21,7 +21,7 @@ function App() {
                             <Home />
                         </ProtectedRoute>
                     } />
-                    <Route path="/login" element={<LoginRegister />} />
+                    <Route path="/login-register" element={<LoginRegister />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
