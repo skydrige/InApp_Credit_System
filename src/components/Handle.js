@@ -1,8 +1,18 @@
+import Web3 from 'web3';
+import abi from '../abis/InAppCreditSystemABI.json';
+
+let web3 = new Web3(window.ethereum);
+let contractAddress = '0x81736BE38f85eb49D6043BF51DfFda48c6e781ab';
+let contract = new web3.eth.Contract(abi, contractAddress);
+
+let walletAddress = '';
+
 export const getCurrentWalletConnected = async () => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
         try {
             const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-            return accounts.length > 0 ? accounts[0] : 'Connect to MetaMask using the connect button.';
+            walletAddress = accounts.length > 0 ? accounts[0] : 'Connect to MetaMask using the connect button.';
+            return walletAddress;
         } catch (err) {
             console.error(err);
             return 'Error connecting.';
@@ -11,6 +21,10 @@ export const getCurrentWalletConnected = async () => {
         return 'Please install MetaMask.';
     }
 };
+
+export const useWalletAddress = () => {
+    return walletAddress;
+}
 
 export const addWalletListener = (setWalletAddress) => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
@@ -35,10 +49,24 @@ export const connectWallet = async (setWalletAddress) => {
 };
 
 
-export function HandleLogin(username, password) {
-    const validUsername = "skydrige";
-    const validPassword = "reboot";
-    if (username === validUsername && password === validPassword) {
+export async function HandleLogin(username, password) {
+    // Call the login function from the contract
+    let result =  await contract.methods.login(username, password).call();
+    console.log(result);
+    return result;
+}
+
+export async function HandleRegister(username, password) {
+    const waddr = useWalletAddress();
+    try {
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        const account = accounts[0];
+        const gas = await contract.methods.register(username, password, waddr).estimateGas({ from: account });
+        const response = await contract.methods.register(username, password, waddr).send({ from: account, gas });
+        console.log(response.events.UserRegistered);
         return true;
+    } catch (err) {
+        console.error(err);
+        return false;
     }
 }

@@ -11,19 +11,25 @@ function Login({ onSwitch }) {
     const [walletAddress, setWalletAddress] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
+    const { logout } = useAuth();
     
     useEffect(() => {
         getCurrentWalletConnected().then(address => setWalletAddress(address));
         addWalletListener(setWalletAddress);
     }, []);
     
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        if (walletAddress && HandleLogin(username, password)) {
-            login();
-            navigate('/home');
-        } else {
-            onSwitch();
+        if (walletAddress) {
+            const loginResult = await HandleLogin(username, password);
+            if (loginResult) {
+                login();
+                navigate('/home');
+            } else {
+                // logout();
+                onSwitch();
+                logout();
+            }
         }
     };
     
