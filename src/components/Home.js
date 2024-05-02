@@ -49,7 +49,7 @@ function Home() {
                 </Form>
                 <div className={"eth-output"}>{eth}</div>
                 <div className={"eth-exist"}>
-                    <h3>{credits} Credits</h3>
+                    {/*<h3>{credits} Credits</h3>*/}
                 </div>
                 <div className={"div-logout"}>
                     <Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>
