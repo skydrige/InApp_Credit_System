@@ -31,7 +31,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 50px 70px;
+    margin: 40px 70px;
+    padding: 15px 70px;
+    border-radius: 5px;
+    background: #333;
+    text-decoration-color: #e5e5e5;
+    color: #e5e5e5;
+}
+
+.eth-exist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 20px;
     padding: 15px 70px;
     border-radius: 5px;
     background: #333;

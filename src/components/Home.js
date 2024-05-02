@@ -31,7 +31,6 @@ function Home() {
             <Navbar className={"navbar"}>
                 <Navbar.Brand className={"navbar-brand"}>
                     <h1><span>InApp Credit System</span></h1>
-                    {/*<Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>*/}
                 </Navbar.Brand>
             </Navbar>
             <div className="credit-form">
@@ -48,7 +47,10 @@ function Home() {
                         <Button variant="primary" type={"submit"} className={"submit-button"}>Submit</Button>
                     </Form.Group>
                 </Form>
-                <div className="eth-output">{eth}</div>
+                <div className={"eth-output"}>{eth}</div>
+                <div className={"eth-exist"}>
+                    <h3>{credits} Credits</h3>
+                </div>
                 <div className={"div-logout"}>
                     <Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>
                 </div>
