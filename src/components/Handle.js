@@ -94,3 +94,13 @@ export async function HandleCredits(creditsToAdd) {
         return false;
     }
 }
+
+export async function getCreditBalance() {
+    try {
+        const username = getUsername();
+        return await contract.methods.getBalance(username).call();
+    } catch (err) {
+        console.error('Error in getBalance:', err);
+        return 0;
+    }
+}

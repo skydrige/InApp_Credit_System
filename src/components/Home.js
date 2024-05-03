@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import {Navbar, Form, FormControl, Container, Button} from 'react-bootstrap';
 import { useAuth } from './AuthContext';
-import { HandleCredits } from './Handle';
+import {getCreditBalance, HandleCredits} from './Handle';
 import "../assets/Home.css";
 import "../assets/Navbar.css";
 
 function Home() {
     const [credits, setCredits] = useState('');
     const [eth, setEth] = useState('0 ETH');
-    
+    const [Credit, setCredit] = useState(0);
     const { logout } = useAuth();
     
     const handleCreditsChange = (event) => {
@@ -33,6 +33,7 @@ function Home() {
         if (success) {
             setCredits('');
             setEth('0 ETH');
+            setCredit(await getCreditBalance());
             console.log("Credits updated successfully");
         } else {
             setCredits('');
@@ -64,7 +65,7 @@ function Home() {
                 </Form>
                 <div className={"eth-output"}>{eth}</div>
                 <div className={"eth-exist"}>
-                    {/*<h3>{Credit} Credits</h3>*/}
+                    <h3>{Credit} Credits</h3>
                 </div>
                 <div className={"div-logout"}>
                     <Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>
