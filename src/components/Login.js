@@ -8,7 +8,7 @@ import { getCurrentWalletConnected, addWalletListener, connectWallet } from './H
 function Login({ onSwitch }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [walletAddress, setWalletAddress] = useState('Empty');
+    const [walletAddress, setWalletAddress] = useState(null);
     const navigate = useNavigate();
     const { login } = useAuth();
     const { logout } = useAuth();

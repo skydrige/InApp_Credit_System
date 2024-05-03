@@ -5,14 +5,14 @@ let web3 = new Web3(window.ethereum);
 let contractAddress = '0x81736BE38f85eb49D6043BF51DfFda48c6e781ab';
 let contract = new web3.eth.Contract(abi, contractAddress);
 
-let walletAddress = '';
+let walletAddress = null;
 let user = '';
 
 export const getCurrentWalletConnected = async () => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
         try {
             const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-            walletAddress = accounts.length > 0 ? accounts[0] : 'Connect to MetaMask using the connect button.';
+            walletAddress = accounts.length > 0 ? accounts[0] : null;
             return walletAddress;
         } catch (err) {
             console.error(err);
