@@ -6,6 +6,7 @@ let contractAddress = '0x81736BE38f85eb49D6043BF51DfFda48c6e781ab';
 let contract = new web3.eth.Contract(abi, contractAddress);
 
 let walletAddress = '';
+let user = '';
 
 export const getCurrentWalletConnected = async () => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
@@ -24,6 +25,10 @@ export const getCurrentWalletConnected = async () => {
 
 export const useWalletAddress = () => {
     return walletAddress;
+}
+
+export const getUsername = () => {
+    return user;
 }
 
 export const addWalletListener = (setWalletAddress) => {
@@ -53,6 +58,9 @@ export async function HandleLogin(username, password) {
     // Call the login function from the contract
     let result =  await contract.methods.login(username, password).call();
     console.log(result);
+    if (result) {
+        user = username;
+    }
     return result;
 }
 
@@ -67,6 +75,22 @@ export async function HandleRegister(username, password) {
         return true;
     } catch (err) {
         console.error(err);
+        return false;
+    }
+}
+
+export async function HandleCredits(creditsToAdd) {
+    try {
+        const username = getUsername();
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        const account = accounts[0];
+        const ethAmount = creditsToAdd * 0.0005 * 1e18; // Convert credits to ETH and then to wei
+        const gas = await contract.methods.updateCredits(username, creditsToAdd).estimateGas({ from: account, value: ethAmount });
+        const response = await contract.methods.updateCredits(username, creditsToAdd).send({ from: account, gas, value: ethAmount });
+        console.log(response.events.CreditsUpdated);
+        return true;
+    } catch (err) {
+        console.error('Error in HandleCredits:', err);
         return false;
     }
 }

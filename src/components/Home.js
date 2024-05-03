@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Navbar, Form, FormControl, Container, Button} from 'react-bootstrap';
 import { useAuth } from './AuthContext';
+import { HandleCredits } from './Handle';
 import "../assets/Home.css";
 import "../assets/Navbar.css";
 
@@ -26,6 +27,20 @@ function Home() {
         }
     };
     
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const success = await HandleCredits(credits);
+        if (success) {
+            setCredits('');
+            setEth('0 ETH');
+            console.log("Credits updated successfully");
+        } else {
+            setCredits('');
+            setEth('0 ETH');
+            console.log("Credits update failed");
+        }
+    }
+    
     return (
         <Container>
             <Navbar className={"navbar"}>
@@ -34,7 +49,7 @@ function Home() {
                 </Navbar.Brand>
             </Navbar>
             <div className="credit-form">
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Enter Credits</Form.Label>
                         <FormControl
