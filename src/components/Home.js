@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Navbar, Form, FormControl, Container, Button} from 'react-bootstrap';
 import { useAuth } from './AuthContext';
 import {getCreditBalance, HandleCredits} from './Handle';
@@ -33,8 +33,8 @@ function Home() {
         if (success) {
             setCredits('');
             setEth('0 ETH');
-            setCredit(await getCreditBalance());
-            console.log("Credits updated successfully");
+            // setCredit(await getCreditBalance());
+            // console.log("Credits updated successfully");
         } else {
             setCredits('');
             setEth('0 ETH');
@@ -42,8 +42,16 @@ function Home() {
         }
     }
     
+    useEffect(() => {
+        const fetchCreditBalance = async () => {
+            const balance = await getCreditBalance();
+            setCredit(balance);
+        };
+        fetchCreditBalance().then(r => console.log("Credits fetched successfully ")).catch(e => console.log("Error fetching credits", e));
+    }, []);
+    
     return (
-        <Container>
+        <Container key={Credit}>
             <Navbar className={"navbar"}>
                 <Navbar.Brand className={"navbar-brand"}>
                     <h1><span>InApp Credit System</span></h1>
@@ -64,9 +72,9 @@ function Home() {
                     </Form.Group>
                 </Form>
                 <div className={"eth-output"}>{eth}</div>
-                <div className={"eth-exist"}>
-                    <h3>{Credit} Credits</h3>
-                </div>
+                {/*<div className={"eth-exist"}>*/}
+                {/*    <h3>Your Current Credits: {Credit}</h3>*/}
+                {/*</div>*/}
                 <div className={"div-logout"}>
                     <Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>
                 </div>
