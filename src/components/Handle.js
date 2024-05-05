@@ -16,10 +16,10 @@ export const getCurrentWalletConnected = async () => {
             return walletAddress;
         } catch (err) {
             console.error(err);
-            return 'Error connecting.';
+            return null;
         }
     } else {
-        return 'Please install MetaMask.';
+        return null;
     }
 };
 
