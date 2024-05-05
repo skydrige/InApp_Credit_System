@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import abi from '../abis/InAppCreditSystemABI.json';
 
 let web3 = new Web3(window.ethereum);
-let contractAddress = '0x3Bb8B650b4D60EBFdf54190c65345bf56E0e1005';
+let contractAddress = '0x5F39E78aBf1Ff5E867dcd3221F5fC3A60461bce0';
 let contract = new web3.eth.Contract(abi, contractAddress);
 
 let walletAddress = null;

@@ -15,6 +15,12 @@ contract InAppCreditSystem {
         uint timestamp;
     }
 
+    address payable public owner; // Declaring owner variable
+
+    constructor() {
+        owner = payable(msg.sender); // Set the deployer's address as the owner
+    }
+
     mapping(string => UserInfo) private users;
     Transaction[] private transactions; // An array to store transactions
 
@@ -53,7 +59,12 @@ contract InAppCreditSystem {
         }));
         emit CreditsUpdated(username, users[username].credits);
         emit CreditPurchaseLogged(transactions.length - 1, users[username].userAddr, creditsToAdd, block.timestamp);
+
+        // Transfer the collected ETH to the owner of the contract
+        owner.transfer(msg.value);
     }
+
+
 
     function getBalance(string memory username) public view returns (uint) {
         require(users[username].hashedPassword != 0, "User does not exist");
