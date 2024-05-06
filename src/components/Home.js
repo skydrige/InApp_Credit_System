@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Navbar, Form, FormControl, Container, Button} from 'react-bootstrap';
+import {Form, FormControl, Container, Button} from 'react-bootstrap';
 import { useAuth } from './AuthContext';
 import {getCreditBalance, HandleCredits} from './Handle';
+import NavBar from "./Navbar";
 import "../assets/Home.css";
 import "../assets/Navbar.css";
 
@@ -47,16 +48,12 @@ function Home() {
             const balance = await getCreditBalance();
             setCredit(balance);
         };
-        fetchCreditBalance().then(r => console.log("Credits fetched successfully ")).catch(e => console.log("Error fetching credits", e));
+        fetchCreditBalance().then(r => console.log("Credits fetched successfully ", r)).catch(e => console.log("Error fetching credits", e));
     }, []);
     
     return (
         <Container key={Credit}>
-            <Navbar className={"navbar"}>
-                <Navbar.Brand className={"navbar-brand"}>
-                    <h1><span>InApp Credit System</span></h1>
-                </Navbar.Brand>
-            </Navbar>
+            <NavBar />
             <div className="credit-form">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>

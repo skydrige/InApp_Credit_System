@@ -198,6 +198,11 @@
         "internalType": "string",
         "name": "password",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "waddr",
+        "type": "string"
       }
     ],
     "name": "login",

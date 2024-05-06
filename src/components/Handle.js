@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import abi from '../abis/InAppCreditSystemABI.json';
 
 let web3 = new Web3(window.ethereum);
-let contractAddress = '0x5F39E78aBf1Ff5E867dcd3221F5fC3A60461bce0';
+let contractAddress = '0xA4a783B1B0332064A9E2A774d2b27232a160F2ef';
 let contract = new web3.eth.Contract(abi, contractAddress);
 
 let walletAddress = null;
@@ -56,7 +56,8 @@ export const connectWallet = async (setWalletAddress) => {
 
 export async function HandleLogin(username, password) {
     // Call the login function from the contract
-    let result =  await contract.methods.login(username, password).call();
+    const waddr = useWalletAddress();
+    let result =  await contract.methods.login(username, password, waddr).call();
     console.log(result);
     if (result) {
         user = username;
