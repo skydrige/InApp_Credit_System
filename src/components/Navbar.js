@@ -1,9 +1,12 @@
 import React from 'react';
 import {Container, Nav, Navbar, NavLink} from 'react-bootstrap';
 import "../assets/Navbar.css"
+import { getUsername } from './Handle';
 import {Link} from "react-router-dom";
 
 function NavBar() {
+    const username = getUsername();
+    
     return (
         <Navbar expand="lg" bg="light" variant="light">
             <Container style={{ display: "flex", justifyContent: "space-between", width: "100%", justifyItems: "center" }}>
@@ -24,6 +27,9 @@ function NavBar() {
                     </NavLink>
                     <NavLink as={Link} to={"/login-register"}>
                         Login/Register
+                    </NavLink>
+                    <NavLink as={Link} to={"/home"}>
+                        {username ? `${username}` : null}
                     </NavLink>
                 </Nav>
             </Container>

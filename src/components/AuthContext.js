@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import {handleLogout} from "./Handle";
 
 const AuthContext = createContext(null);
 
@@ -31,6 +32,7 @@ export const AuthProvider = ({ children }) => {
 	const logout = () => {
 		setIsAuthenticated(false);
 		Cookies.remove('auth');
+		handleLogout();
 	};
 	
 	return (

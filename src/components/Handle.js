@@ -6,7 +6,7 @@ let contractAddress = '0xA4a783B1B0332064A9E2A774d2b27232a160F2ef';
 let contract = new web3.eth.Contract(abi, contractAddress);
 
 let walletAddress = null;
-let user = '';
+let user = null;
 
 export const getCurrentWalletConnected = async () => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
@@ -29,6 +29,10 @@ export const useWalletAddress = () => {
 
 export const getUsername = () => {
     return user;
+}
+
+export const handleLogout = () => {
+    user = null;
 }
 
 export const addWalletListener = (setWalletAddress) => {

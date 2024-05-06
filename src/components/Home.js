@@ -34,8 +34,6 @@ function Home() {
         if (success) {
             setCredits('');
             setEth('0 ETH');
-            // setCredit(await getCreditBalance());
-            // console.log("Credits updated successfully");
         } else {
             setCredits('');
             setEth('0 ETH');
@@ -69,9 +67,6 @@ function Home() {
                     </Form.Group>
                 </Form>
                 <div className={"eth-output"}>{eth}</div>
-                {/*<div className={"eth-exist"}>*/}
-                {/*    <h3>Your Current Credits: {Credit}</h3>*/}
-                {/*</div>*/}
                 <div className={"div-logout"}>
                     <Button variant="primary" className={"logout"} onClick={logout}>Logout</Button>
                 </div>
