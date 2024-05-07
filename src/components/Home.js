@@ -50,7 +50,7 @@ function Home() {
     }, []);
     
     return (
-        <Container key={Credit}>
+        <Container key={Credit} style={{ justifyItems: "center", justifySelf: "center", alignContent: "center", alignItems: "center" }}>
             <NavBar />
             <div className="credit-form">
                 <Form onSubmit={handleSubmit}>
